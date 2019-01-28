@@ -7,9 +7,14 @@
  */
 int main(int argc, char **argv[])
 {
+  char *needle = NULL;
   struct dirent *de;
   if (argc > 1) {
-  char *needle = argv[1];
+  needle = argv[1];
+  }
+  else {
+  needle = "./";
+  }
   
   DIR *dir = opendir(needle);
 
@@ -20,12 +25,7 @@ int main(int argc, char **argv[])
     while ((de = readdir(dir)) != NULL) {
       printf("%s\n", de->d_name);
     }
-
     closedir(dir);
-  }
-  else {
-    printf("usage: lsls path\n");
-  }
   // Parse command line
 
   // Open directory
