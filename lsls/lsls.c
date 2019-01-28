@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <dirent.h>
 
@@ -7,7 +8,10 @@
 int main(int argc, char **argv[])
 {
   struct dirent *de;
-  DIR *dir = opendir("./");
+  if (argc > 1) {
+  char *needle = argv[1];
+  
+  DIR *dir = opendir(needle);
 
     if (dir == NULL) {
       printf("Directory not found");
@@ -18,7 +22,10 @@ int main(int argc, char **argv[])
     }
 
     closedir(dir);
-
+  }
+  else {
+    printf("usage: lsls path\n");
+  }
   // Parse command line
 
   // Open directory
